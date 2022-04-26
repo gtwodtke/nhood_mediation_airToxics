@@ -1,0 +1,233 @@
+              NCDB2010.CSV
+              1/4/2021 6:25:25 PM
+
+Field         Year And Description
+------------- -----------------------------------------------------------------
+GEO2010       2010 Census Tract Identifier (ssccctttttt)
+STATE         2010 State
+STUSAB        2010 State/US Abbreviation (USPS)
+REGION        2010 Region
+DIVISION      2010 Division
+INTPTLAT      2010 Internal Point (Latitude)
+INTPTLON      2010 Internal Point (Longitude)
+TCH_70_10     2010 Tract change code 1970-2010
+TCH_80_10     2010 Tract change code 1980-2010
+TCH_90_10     2010 Tract change code 1990-2010
+TCH_00_10     2010 Tract change code 2000-2010
+COUNTY        2010 County
+ZCTA5         2010 ZIP Code Tabulation Area (5-Digit)
+SDELM         2010 School District (Elementary)
+SDSEC         2010 School District (Secondary)
+SDUNI         2010 School District (Unified)
+TRCTPOP1      2010 Total population
+              Census 2010 source: Table P1:1
+SHR1D         2010 Total population for race/ethnicity
+              Census 2010 source: Table P8:1
+SHRWHT1N      2010 Total White population
+              Census 2010 source: Table P8:3,12,15,33
+SHRWHT1       2010 Proportion White population
+              Census 2010 source: SHRWHT1N/SHR1D
+SHRBLK1N      2010 Total Black/African American population
+              Census 2010 source: Table P8:04,11,16-19,27-30,37-42,48-53,58-61,64-67,69,71
+SHRBLK1       2010 Proportion Black/African American population
+              Census 2010 source: SHRBLK1N/SHR1D
+NONHISP1      2010 Persons not of Hispanic/Latino origin
+              Census 2010 source: Table P4:2
+SHRHSP1N      2010 Total Hispanic/Latino population
+              Census 2010 source: Table P9:2
+SHRHSP1       2010 Proportion Hispanic/Latino population
+              Census 2010 source: SHRHSP1N/SHR1D
+ADULT1N       2010 Adults 18+ years old
+              Census 2010 source: Table P12:7-25, 31-49
+ADULT1        2010 Proportion of persons who are adults 18+ years old
+              Census 2010 source: ADULT1N/TRCTPOP1
+CHILD1N       2010 Children under 18 years old
+              Census 2010 source: Table P14:3-20,24-41
+CHILD1        2010 Proportion of persons who are children under 18 years old
+              Census 2010 source: CHILD1N/TRCTPOP1
+OLD1N         2010 Persons 65+ years old
+              Census 2010 source: Table P12:20-25,44-49
+OLD1          2010 Proportion of persons who are 65+ years old
+              Census 2010 source: OLD1N/TRCTPOP1
+KIDS1N        2010 Children under 5 years old
+              Census 2010 source: Table P12:3,27
+KIDS1         2010 Proportion of persons who are children under 5 years old
+              Census 2010 source: KIDS1N/TRCTPOP1
+NUMHHS1       2010 Total households
+              Census 2010 source: Table P15:1
+PERS15P1      2010 Total persons 15+ years old
+              Census 2010 source: Table P12:6-25,30-49
+SMHSE1D       2010 Persons 5+ years old
+              Census 2010 source: Table P12:4-25, 27-49
+EDUCPP1       2010 Persons 25+ years old
+              Census 2010 source: Table P12:11-25,35-41
+HSDROP1D      2010 Persons 16-19 years old
+              Census 2010 source: Table PCT12:19-22,123-126
+MNOPRT1D      2010 Males 16+ years old
+              Census 2010 source: Table PCT12:19-105
+FNOPRT1D      2010 Females 16+ years old
+              Census 2010 source: Table PCT12:123-209
+WELFAR1D      2010 Total households
+              Census 2010 source: Table P15:1
+FAVINC1D      2010 Total families
+              Census 2010 source: Table P35:1
+TOTHSUN1      2010 Total housing units
+              Census 2010 source: Table H1:1
+OCCHU1        2010 Total occupied housing units
+              Census 2010 source: Table H3:2
+VACHU1        2010 Total vacant housing units
+              Census 2010 source: Table H5:1
+SHR1AD        06-10 Total population for race/ethnicity
+              ACS 06-10 source: Table B02001:1
+NONHISP1A     06-10 Persons not of Hispanic/Latino origin
+              ACS 06-10 source: Table B03002:2
+SHRHSP1AN     06-10 Total Hispanic/Latino population
+              ACS 06-10 source: Table B03002:12
+SHRHSP1A      06-10 Proportion Hispanic/Latino population
+ADULT1AN      06-10 Adults 18+ years old
+              ACS 06-10 source: Table B01001:7-25,31-49
+ADULT1A       06-10 Proportion of persons who are adults 18+ years old
+CHILD1AN      06-10 Children under 18 years old
+              ACS 06-10 source: Table B01001:3-6,27-30
+CHILD1A       06-10 Proportion of persons who are children under 18 years old
+OLD1AN        06-10 Persons 65+ years old
+              ACS 06-10 source: Table B01001:20-25,44-49
+OLD1A         06-10 Proportion of persons who are 65+ years old
+KIDS1AN       06-10 Children under 5 years old
+              ACS 06-10 source: Table B01001:3,27
+KIDS1A        06-10 Proportion of persons who are children under 5 years old
+NATBORN1A     06-10 Native born population
+              ACS 06-10 source: Table B05002:2
+FORBORN1A     06-10 Foreign born population
+              ACS 06-10 source: Table B05002:13
+NUMHHS1A      06-10 Total households
+              ACS 06-10 source: Table B11001:1
+PERS15P1A     06-10 Total persons 15+ years old
+              ACS 06-10 source: Table B12001:1
+FFH1AN        06-10 Female-headed families and subfamilies with own children
+              ACS 06-10 source: Table B11003:16 + Table B11013:5
+FFH1AD        06-10 Total families and subfamilies with own children
+              ACS 06-10 source: Table B11003:3,10,16 + Table B11013:3,5,6
+FFH1A         06-10 Proportion of families and subfamilies with own children 
+                    who are female-headed 
+SMHSE1ARN     06-10 Persons 1+ years old residing in the same house one 
+                    years ago 
+              ACS 06-10 source: Table B07003:4
+SMHSE1ARD     06-10 Persons 1+ years old
+              ACS 06-10 source: Table B07003:1
+SMHSE1AR      06-10 Proportion of persons 5+ years old residing in the same 
+                    house five years ago 
+EDUC81A       06-10 Persons 25+ years old who have competed 0-8 years of school
+              ACS 06-10 source: Table B15002:3-6,20-23
+EDUC111A      06-10 Persons 25+ years old who have completed 9-12 years 
+                    of school but no diploma 
+              ACS 06-10 source: Table B15002:7-10,24-27
+EDUC121A      06-10 Persons 25+ years old who have completed high school 
+                    but no college 
+              ACS 06-10 source: Table B15002:11,28
+EDUC151A      06-10 Persons 25+ years old who have completed some college 
+                    but no degree 
+              ACS 06-10 source: Table B15002:12-13,29-30
+EDUCA1A       06-10 Persons 25+ years old who have an associate degree but 
+                    no bachelors degree 
+              ACS 06-10 source: Table B15002:14,31
+EDUC161A      06-10 Persons 25+ years old who have a bachelors or graduate/professional 
+                    degree 
+              ACS 06-10 source: Table B15002:15-18,32-35
+EDUCPP1A      06-10 Persons 25+ years old
+              ACS 06-10 source: Table B15002:1
+HSDROP1AN     06-10 Persons 16-19 years old neither enrolled in nor graduated 
+                    from high school 
+              ACS 06-10 source: Table B14005:12,26
+HSDROP1AD     06-10 Persons 16-19 years old
+              ACS 06-10 source: Table B14005:1
+HSDROP1A      06-10 Proportion of persons 16-19 years old neither enrolled 
+                    in nor graduated from high school 
+INDEMP1A      06-10 Civilian employed persons 16+ years old
+              ACS 06-10 source: Table C24010:1
+OCC11A        06-10 Persons 16+ years old employed in professional and technical 
+                    occupations 
+              ACS 06-10 source: Table C24010:7,11,16,43,47,52
+OCC21A        06-10 Persons 16+ years old employed as executives, managers, 
+                    and administrators (excl. farms) 
+              ACS 06-10 source: Table C24010:4,40
+OCC31A        06-10 Persons 16+ years old employed as sales workers
+              ACS 06-10 source: Table C24010:28,64
+OCC41A        06-10 Persons 16+ years old employed as administrative support 
+                    and clerical workers 
+              ACS 06-10 source: Table C24010:29,65
+OCC51A        06-10 Persons 16+ years old employed as precision production, 
+                    craft, and repair workers 
+              ACS 06-10 source: Table C24010:32,33,35,68,69,71
+OCC61A        06-10 Persons 16+ years old employed as operators, assemblers, 
+                    transportation, and material moving workers 
+              ACS 06-10 source: Table C24010:36,72
+OCC71A        06-10 Persons 16+ years old employed as nonfarm laborers
+              ACS 06-10 source: Table C24010:37,73
+OCC81A        06-10 Persons 16+ years old employed as service workers
+              ACS 06-10 source: Table C24010:19,55
+OCC91A        06-10 Persons 16+ years old employed as farm workers or in 
+                    forestry and fishing 
+              ACS 06-10 source: Table C24010:31,67
+UNEMPT1AN     06-10 Persons 16+ years old in the civilian labor force and 
+                    unemployed 
+              ACS 06-10 source: Table B23001:8,15,22,29,36,43,50,57,64,71,76,81,86,94,101,108,115,122,129,136,143,150,157,162,167,172
+UNEMPT1AD     06-10 Persons 16+ years old in the civilian labor force
+              ACS 06-10 source: Table B23001:6,13,20,27,34,41,48,55,62,69,92,99,106,113,120,127,134,141,148,155
+UNEMPRT1A     06-10 Proportion of persons 16+ years old who are in the civilian 
+                    labor force and unemployed 
+POVRAT1AN     06-10 Total persons below the poverty level in past 12 months
+              ACS 06-10 source: Table B17001:2
+POVRAT1AD     06-10 Total population with poverty status determined
+              ACS 06-10 source: Table B17001:1
+POVRAT1A      06-10 Proportion of total persons below the poverty level 
+                    in past 12 months 
+AVWEL1ARD     06-10 Households with public assistance income (not incl. 
+                    SSI) in past 12 months 
+              ACS 06-10 source: Table B19057:2
+WELFAR1ARN    06-10 Households with public assistance income (not incl. 
+                    SSI) in past 12 months 
+              ACS 06-10 source: Table B19057:2
+AVPBLA1ARD    06-10 Households with public assistance income (not incl. 
+                    SSI) in past 12 months 
+              ACS 06-10 source: Table B19057:2
+WELFAR1AD     06-10 Total households
+              ACS 06-10 source: Table B19001:1
+WELFAR1AR     06-10 Proportion of households with public assistance income 
+                    (incl. SSI) in past 12 months 
+FAVINC1AN     06-10 Aggregate family income ($)
+              ACS 06-10 source: Table B19127:1
+FAVINC1AD     06-10 Total families
+              ACS 06-10 source: Table B19101:1
+FAVINC1A      06-10 Average income per family ($)
+MDFAMY1A      06-10 Median family income in the past 12 months ($)
+              ACS 06-10 source: Table B19113:1
+AVHHIN1AN     06-10 Aggregate household income in past 12 months ($)
+              ACS 06-10 source: Table B19025:1
+AVHHIN1A      06-10 Average household income in past 12 months ($)
+MDHHY1A       06-10 Median household income in the past 12 months ($)
+              ACS 06-10 source: Table B19013:1
+TOTHSUN1A     06-10 Total housing units
+              ACS 06-10 source: Table B25002:1
+OCCHU1A       06-10 Total occupied housing units
+              ACS 06-10 source: Table B25002:2
+VACHU1A       06-10 Total vacant housing units
+              ACS 06-10 source: Table B25002:3
+BLTOC051A     06-10 Occupied housing units built 2005 or later
+              ACS 06-10 source: Table B25036:3,13
+BLTOC041A     06-10 Occupied housing units built 2000 to 2004
+              ACS 06-10 source: Table B25036:4,14
+BLTOC991A     06-10 Occupied housing units built 1990 to 1999
+              ACS 06-10 source: Table B25036:5,15
+BLTOC891A     06-10 Occupied housing units built 1980 to 1989
+              ACS 06-10 source: Table B25036:6,16
+BLTOC791A     06-10 Occupied housing units built 1970 to 1979
+              ACS 06-10 source: Table B25036:7,17
+BLTOC691A     06-10 Occupied housing units built 1960 to 1969
+              ACS 06-10 source: Table B25036:8,18
+BLTOC591A     06-10 Occupied housing units built 1950 to 1959
+              ACS 06-10 source: Table B25036:9,19
+BLTOC491A     06-10 Occupied housing units built 1940 to 1949
+              ACS 06-10 source: Table B25036:10,20
+BLTOC391A     06-10 Occupied housing units built 1939 or earlier
+              ACS 06-10 source: Table B25036:11,21

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+<!-- Database specifications. -->
+
+<archive val="Y" ></archive>
+<database val="C:\NCDB 1970-2010 2.1\database"></database>
+<boundary val="C:\NCDB 1970-2010 2.1\database\Boundary\2010"></boundary>
+<linkFile val="*nolinkage"></linkFile>
+<tables val="_repgen"></tables>
+<output val="C:\Users\Geoff\Reports\ncdb2010.CSV"></output>
+<report val="CSV"></report>
+<commas val="N"></commas>
+<year val="2010" ></year>
+<span val="allyear"></span>
+
+<!-- Report: sub-area geography and options. -->
+
+<geography val="TRACT" area="US.*"></geography>
+<selectedGeo val="TRACT"></selectedGeo>
+<errors val="N" ></errors>
+<areaName val="N" ></areaName>
+<incHeader val="N" ></incHeader>
+<areaGeoId val="N"></areaGeoId>
+
+<!-- Report: coverage. -->
+
+<state val="US" ></state>
+
+<!-- Report: fields. -->
+
+<field val="GEO2010	2010	Census Tract Identifier (ssccctttttt)" ></field>
+<field val="STATE	2010	State" ></field>
+<field val="STUSAB	2010	State/US Abbreviation (USPS)" ></field>
+<field val="REGION	2010	Region" ></field>
+<field val="DIVISION	2010	Division" ></field>
+<field val="INTPTLAT	2010	Internal Point (Latitude)" ></field>
+<field val="INTPTLON	2010	Internal Point (Longitude)" ></field>
+<field val="TCH_70_10	2010	Tract change code 1970-2010" ></field>
+<field val="TCH_80_10	2010	Tract change code 1980-2010" ></field>
+<field val="TCH_90_10	2010	Tract change code 1990-2010" ></field>
+<field val="TCH_00_10	2010	Tract change code 2000-2010" ></field>
+<field val="COUNTY	2010	County" ></field>
+<field val="ZCTA5	2010	ZIP Code Tabulation Area (5-Digit)" ></field>
+<field val="SDELM	2010	School District (Elementary)" ></field>
+<field val="SDSEC	2010	School District (Secondary)" ></field>
+<field val="SDUNI	2010	School District (Unified)" ></field>
+<field val="TRCTPOP1	2010	Total population" ></field>
+<field val="SHR1D	2010	Total population for race/ethnicity" ></field>
+<field val="SHRWHT1N	2010	Total White population" ></field>
+<field val="SHRWHT1	2010	Proportion White population" ></field>
+<field val="SHRBLK1N	2010	Total Black/African American population" ></field>
+<field val="SHRBLK1	2010	Proportion Black/African American population" ></field>
+<field val="NONHISP1	2010	Persons not of Hispanic/Latino origin" ></field>
+<field val="SHRHSP1N	2010	Total Hispanic/Latino population" ></field>
+<field val="SHRHSP1	2010	Proportion Hispanic/Latino population" ></field>
+<field val="ADULT1N	2010	Adults 18+ years old" ></field>
+<field val="ADULT1	2010	Proportion of persons who are adults 18+ years old" ></field>
+<field val="CHILD1N	2010	Children under 18 years old" ></field>
+<field val="CHILD1	2010	Proportion of persons who are children under 18 years old" ></field>
+<field val="OLD1N	2010	Persons 65+ years old" ></field>
+<field val="OLD1	2010	Proportion of persons who are 65+ years old" ></field>
+<field val="KIDS1N	2010	Children under 5 years old" ></field>
+<field val="KIDS1	2010	Proportion of persons who are children under 5 years old" ></field>
+<field val="NUMHHS1	2010	Total households" ></field>
+<field val="PERS15P1	2010	Total persons 15+ years old" ></field>
+<field val="SMHSE1D	2010	Persons 5+ years old" ></field>
+<field val="EDUCPP1	2010	Persons 25+ years old" ></field>
+<field val="HSDROP1D	2010	Persons 16-19 years old" ></field>
+<field val="MNOPRT1D	2010	Males 16+ years old" ></field>
+<field val="FNOPRT1D	2010	Females 16+ years old" ></field>
+<field val="WELFAR1D	2010	Total households" ></field>
+<field val="FAVINC1D	2010	Total families" ></field>
+<field val="TOTHSUN1	2010	Total housing units" ></field>
+<field val="OCCHU1	2010	Total occupied housing units" ></field>
+<field val="VACHU1	2010	Total vacant housing units" ></field>
+<field val="SHR1AD	06-10	Total population for race/ethnicity" ></field>
+<field val="NONHISP1A	06-10	Persons not of Hispanic/Latino origin" ></field>
+<field val="SHRHSP1AN	06-10	Total Hispanic/Latino population" ></field>
+<field val="SHRHSP1A	06-10	Proportion Hispanic/Latino population" ></field>
+<field val="ADULT1AN	06-10	Adults 18+ years old" ></field>
+<field val="ADULT1A	06-10	Proportion of persons who are adults 18+ years old" ></field>
+<field val="CHILD1AN	06-10	Children under 18 years old" ></field>
+<field val="CHILD1A	06-10	Proportion of persons who are children under 18 years old" ></field>
+<field val="OLD1AN	06-10	Persons 65+ years old" ></field>
+<field val="OLD1A	06-10	Proportion of persons who are 65+ years old" ></field>
+<field val="KIDS1AN	06-10	Children under 5 years old" ></field>
+<field val="KIDS1A	06-10	Proportion of persons who are children under 5 years old" ></field>
+<field val="NATBORN1A	06-10	Native born population" ></field>
+<field val="FORBORN1A	06-10	Foreign born population" ></field>
+<field val="NUMHHS1A	06-10	Total households" ></field>
+<field val="PERS15P1A	06-10	Total persons 15+ years old" ></field>
+<field val="FFH1AN	06-10	Female-headed families and subfamilies with own children" ></field>
+<field val="FFH1AD	06-10	Total families and subfamilies with own children" ></field>
+<field val="FFH1A	06-10	Proportion of families and subfamilies with own children who are female-headed" ></field>
+<field val="SMHSE1ARN	06-10	Persons 1+ years old residing in the same house one years ago" ></field>
+<field val="SMHSE1ARD	06-10	Persons 1+ years old" ></field>
+<field val="SMHSE1AR	06-10	Proportion of persons 5+ years old residing in the same house five years ago" ></field>
+<field val="EDUC81A	06-10	Persons 25+ years old who have competed 0-8 years of school" ></field>
+<field val="EDUC111A	06-10	Persons 25+ years old who have completed 9-12 years of school but no diploma" ></field>
+<field val="EDUC121A	06-10	Persons 25+ years old who have completed high school but no college" ></field>
+<field val="EDUC151A	06-10	Persons 25+ years old who have completed some college but no degree" ></field>
+<field val="EDUCA1A	06-10	Persons 25+ years old who have an associate degree but no bachelors degree" ></field>
+<field val="EDUC161A	06-10	Persons 25+ years old who have a bachelors or graduate/professional degree" ></field>
+<field val="EDUCPP1A	06-10	Persons 25+ years old" ></field>
+<field val="HSDROP1AN	06-10	Persons 16-19 years old neither enrolled in nor graduated from high school" ></field>
+<field val="HSDROP1AD	06-10	Persons 16-19 years old" ></field>
+<field val="HSDROP1A	06-10	Proportion of persons 16-19 years old neither enrolled in nor graduated from high school" ></field>
+<field val="INDEMP1A	06-10	Civilian employed persons 16+ years old" ></field>
+<field val="OCC11A	06-10	Persons 16+ years old employed in professional and technical occupations" ></field>
+<field val="OCC21A	06-10	Persons 16+ years old employed as executives, managers, and administrators (excl. farms)" ></field>
+<field val="OCC31A	06-10	Persons 16+ years old employed as sales workers" ></field>
+<field val="OCC41A	06-10	Persons 16+ years old employed as administrative support and clerical workers" ></field>
+<field val="OCC51A	06-10	Persons 16+ years old employed as precision production, craft, and repair workers" ></field>
+<field val="OCC61A	06-10	Persons 16+ years old employed as operators, assemblers, transportation, and material moving workers" ></field>
+<field val="OCC71A	06-10	Persons 16+ years old employed as nonfarm laborers" ></field>
+<field val="OCC81A	06-10	Persons 16+ years old employed as service workers" ></field>
+<field val="OCC91A	06-10	Persons 16+ years old employed as farm workers or in forestry and fishing" ></field>
+<field val="UNEMPT1AN	06-10	Persons 16+ years old in the civilian labor force and unemployed" ></field>
+<field val="UNEMPT1AD	06-10	Persons 16+ years old in the civilian labor force" ></field>
+<field val="UNEMPRT1A	06-10	Proportion of persons 16+ years old who are in the civilian labor force and unemployed" ></field>
+<field val="POVRAT1AN	06-10	Total persons below the poverty level in past 12 months" ></field>
+<field val="POVRAT1AD	06-10	Total population with poverty status determined" ></field>
+<field val="POVRAT1A	06-10	Proportion of total persons below the poverty level in past 12 months" ></field>
+<field val="AVWEL1ARD	06-10	Households with public assistance income (not incl. SSI) in past 12 months" ></field>
+<field val="WELFAR1ARN	06-10	Households with public assistance income (not incl. SSI)  in past 12 months" ></field>
+<field val="AVPBLA1ARD	06-10	Households with public assistance income (not incl. SSI) in past 12 months" ></field>
+<field val="WELFAR1AD	06-10	Total households" ></field>
+<field val="WELFAR1AR	06-10	Proportion of households with public assistance income (incl. SSI) in past 12 months" ></field>
+<field val="FAVINC1AN	06-10	Aggregate family income ($)" ></field>
+<field val="FAVINC1AD	06-10	Total families" ></field>
+<field val="FAVINC1A	06-10	Average income per family ($)" ></field>
+<field val="MDFAMY1A	06-10	Median family income in the past 12 months ($)" ></field>
+<field val="AVHHIN1AN	06-10	Aggregate household income in past 12 months ($)" ></field>
+<field val="AVHHIN1A	06-10	Average household income in past 12 months ($)" ></field>
+<field val="MDHHY1A	06-10	Median household income in the past 12 months ($)" ></field>
+<field val="TOTHSUN1A	06-10	Total housing units" ></field>
+<field val="OCCHU1A	06-10	Total occupied housing units" ></field>
+<field val="VACHU1A	06-10	Total vacant housing units" ></field>
+<field val="BLTOC051A	06-10	Occupied housing units built 2005 or later" ></field>
+<field val="BLTOC041A	06-10	Occupied housing units built 2000 to 2004" ></field>
+<field val="BLTOC991A	06-10	Occupied housing units built 1990 to 1999" ></field>
+<field val="BLTOC891A	06-10	Occupied housing units built 1980 to 1989" ></field>
+<field val="BLTOC791A	06-10	Occupied housing units built 1970 to 1979" ></field>
+<field val="BLTOC691A	06-10	Occupied housing units built 1960 to 1969" ></field>
+<field val="BLTOC591A	06-10	Occupied housing units built 1950 to 1959" ></field>
+<field val="BLTOC491A	06-10	Occupied housing units built 1940 to 1949" ></field>
+<field val="BLTOC391A	06-10	Occupied housing units built 1939 or earlier" ></field>
+
+</configuration>

@@ -1,0 +1,177 @@
+              NCDB2000NORM2010.CSV
+              1/4/2021 6:09:09 PM
+
+Field         Year And Description
+------------- -----------------------------------------------------------------
+GEO2010       2010 Census Tract Identifier (ssccctttttt)
+STATE         2010 State
+STUSAB        2010 State/US Abbreviation (USPS)
+REGION        2010 Region
+DIVISION      2010 Division
+INTPTLAT      2010 Internal Point (Latitude)
+INTPTLON      2010 Internal Point (Longitude)
+TCH_70_10     2010 Tract change code 1970-2010
+TCH_80_10     2010 Tract change code 1980-2010
+TCH_90_10     2010 Tract change code 1990-2010
+TCH_00_10     2010 Tract change code 2000-2010
+COUNTY        2010 County
+ZCTA5         2010 ZIP Code Tabulation Area (5-Digit)
+SDELM         2010 School District (Elementary)
+SDSEC         2010 School District (Secondary)
+SDUNI         2010 School District (Unified)
+TRCTPOP0      2000 Total population
+              Census 2000 source: Table P1:1
+SHR0D         2000 Total population for race/ethnicity
+              Census 2000 source: Table P6:1
+SHRWHT0N      2000 Total White population
+              Census 2000 source: Table P3:3,12,15,33
+SHRWHT0       2000 Prop. White population
+SHRBLK0N      2000 Total Black/Afr. Am. population
+              Census 2000 source: Table P3:4,11,16-19,27-30,37-42,48-53,58-61,64-67,69,71
+SHRBLK0       2000 Prop. Black/Afr. Am. population
+NONHISP0      2000 Persons not of Hisp./Latino origin
+              Census 2000 source: Table P7:2
+SHRHSP0N      2000 Total Hisp./Latino population
+              Census 2000 source: Table P7:10
+SHRHSP0       2000 Prop. Hisp./Latino population
+ADULT0N       2000 Adults 18+ years old
+              Census 2000 source: Table P8:21-40, 60-79
+ADULT0        2000 Prop. of persons who are adults 18+ years old
+CHILD0N       2000 Children under 18 years old
+              Census 2000 source: Table P8:3-20,42-59
+CHILD0        2000 Prop. of persons who are children under 18 years old
+OLD0N         2000 Persons 65+ years old
+              Census 2000 source: Table P8:35-40,74-79
+OLD0          2000 Prop. of persons who are 65+ years old
+KIDS0N        2000 Children under 5 years old
+              Census 2000 source: Table P8:3-7,42-46
+KIDS0         2000 Prop. of persons who are children under 5 years old
+NATBORN0      2000 Native born population
+              Census 2000 source: Table P21:2
+FORBORN0      2000 Foreign born population
+              Census 2000 source: Table P21:13
+NUMHHS0       2000 Total HHs
+              Census 2000 source: Table P14:1
+PERS15P0      2000 Total persons 15+ years old
+              Census 2000 source: Table P8:18-40,57-79
+FFH0N         2000 Female-headed families and subfamilies with own children
+              Census 2000 source: Table P12:12,27 + Table PCT4:5
+FFH0D         2000 Total families and subfamilies with own children
+              Census 2000 source: Table P12:5,9,12,20,24,27 + Table PCT4:3,5-6
+FFH0          2000 Prop. of families and subfamilies with own children who 
+                   are female-headed 
+SMHSE0N       2000 Persons 5+ years old residing in the same house five 
+                   years ago 
+              Census 2000 source: Table P24:2
+SMHSE0D       2000 Persons 5+ years old
+              Census 2000 source: Table P24:1
+SMHSE0        2000 Prop. of persons 5+ years old residing in the same house 
+                   five years ago 
+EDUC80        2000 Persons 25+ years old who have competed 0-8 years of school
+              Census 2000 source: Table P37:3-6,20-23
+EDUC110       2000 Persons 25+ years old who have completed 9-12 years of 
+                   school but no diploma 
+              Census 2000 source: Table P37:7-10,24-27
+EDUC120       2000 Persons 25+ years old who have completed h.s. but no college
+              Census 2000 source: Table P37:11,28
+EDUC150       2000 Persons 25+ years old who have completed some college 
+                   but no degree 
+              Census 2000 source: Table P37:12-13,29-30
+EDUCA0        2000 Persons 25+ years old who have an associate degree but 
+                   no bachelors degree 
+              Census 2000 source: Table P37:14,31
+EDUC160       2000 Persons 25+ years old who have a bachelors or graduate/professional 
+                   degree 
+              Census 2000 source: Table P37:15-18,32-35
+EDUCPP0       2000 Persons 25+ years old
+              Census 2000 source: Table P37:1
+HSDROP0N      2000 Persons 16-19 years old neither enrolled in nor graduated 
+                   from h.s. 
+              Census 2000 source: Table P38:19
+HSDROP0D      2000 Persons 16-19 years old
+              Census 2000 source: Table P38:1
+HSDROP0       2000 Prop. of persons 16-19 years old neither enrolled in 
+                   nor graduated from h.s. 
+INDEMP0       2000 Civilian employed persons 16+ years old
+              Census 2000 source: Table P43:6,13
+OCC10         2000 Persons 16+ years old employed in professional and technical 
+                   occupations 
+              Census 2000 source: Table P50:10,45,57,92
+OCC20         2000 Persons 16+ years old employed as executives, managers, 
+                   and administrators (excl. farms) 
+              Census 2000 source: Table P50:5,7,52,54
+OCC30         2000 Persons 16+ years old employed as sales workers
+              Census 2000 source: Table P50:32,79
+OCC40         2000 Persons 16+ years old employed as administrative support 
+                   and clerical workers 
+              Census 2000 source: Table P50:33,80
+OCC50         2000 Persons 16+ years old employed as precision production, 
+                   craft, and repair workers 
+              Census 2000 source: Table P50:36,40,42,83,87,89
+OCC60         2000 Persons 16+ years old employed as operators, assemblers, 
+                   transportation, and material moving workers 
+              Census 2000 source: Table P50:44,46,47,91,93,94
+OCC70         2000 Persons 16+ years old employed as nonfarm laborers
+              Census 2000 source: Table P50:48,95
+OCC80         2000 Persons 16+ years old employed as service workers
+              Census 2000 source: Table P50:23,70
+OCC90         2000 Persons 16+ years old employed as farm workers or in 
+                   forestry and fishing 
+              Census 2000 source: Table P50:6,34,53,81
+MNOPRT0D      2000 Males 16+ years old
+              Census 2000 source: Table P47:2
+FNOPRT0D      2000 Females 16+ years old
+              Census 2000 source: Table P47:26
+UNEMPT0N      2000 Persons 16+ years old in the civilian labor force and 
+                   unemployed 
+              Census 2000 source: Table P43:7,14
+UNEMPT0D      2000 Persons 16+ years old in the civilian labor force
+              Census 2000 source: Table P43:5,12
+UNEMPRT0      2000 Prop. of persons 16+ years old who are in the civilian 
+                   labor force and unemployed 
+POVRAT0N      2000 Total persons below the poverty level last year
+              Census 2000 source: Table P87:2
+POVRAT0D      2000 Total population with poverty status determined
+              Census 2000 source: Table P87:1
+POVRAT0       2000 Prop. of total persons below the poverty level last year
+WELFAR0N      2000 Households with public assistance inc. (incl. SSI) last year
+              Census 2000 source: Table P63:2 + Table P64:2
+WELFAR0D      2000 Total HHs
+              Census 2000 source: Table P64:1
+WELFARE0      2000 Prop. of HHs with public assistance inc. last year
+FAVINC0N      2000 Aggregate family inc. ($)
+              Census 2000 source: Table P78:1
+FAVINC0D      2000 Total families
+              Census 2000 source: Table P15:1
+FAVINC0       2000 Average inc. per family ($)
+MDFAMY0       2000 Median family inc. last year ($)
+              Census 2000 source: Table P77:1
+AVHHIN0N      2000 Aggregate HH inc. last year ($)
+              Census 2000 source: Table P54:1
+AVHHIN0       2000 Average HH inc. last year ($)
+MDHHY0        2000 Median HH inc. last year ($)
+              Census 2000 source: Table P53:1
+TOTHSUN0      2000 Total housing units
+              Census 2000 source: Table H1:1
+OCCHU0        2000 Total occupied housing units
+              Census 2000 source: Table H6:2
+VACHU0        2000 Total vacant housing units
+              Census 2000 source: Table H6:3
+BLTOC000      2000 Occupied housing units built 1999-March 2000
+              Census 2000 source: Table H36:3,13
+BLTOC980      2000 Occupied housing units built 1995-1998
+              Census 2000 source: Table H36:4,14
+BLTOC940      2000 Occupied housing units built 1990-1994
+              Census 2000 source: Table H36:5,15
+BLTOC890      2000 Occupied housing units built 1980-1989
+              Census 2000 source: Table H36:6,16
+BLTOC790      2000 Occupied housing units built 1970-1979
+              Census 2000 source: Table H36:7,17
+BLTOC690      2000 Occupied housing units built 1960-1969
+              Census 2000 source: Table H36:8,18
+BLTOC590      2000 Occupied housing units built 1950-1959
+              Census 2000 source: Table H36:9,19
+BLTOC490      2000 Occupied housing units built 1940-1949
+              Census 2000 source: Table H36:10,20
+BLTOC390      2000 Occupied housing units built 1939 or earlier
+              Census 2000 source: Table H36:11,21

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+<!-- Database specifications. -->
+
+<archive val="Y" ></archive>
+<database val="C:\NCDB 1970-2010 2.1\database"></database>
+<boundary val="C:\NCDB 1970-2010 2.1\database\Boundary\2010"></boundary>
+<linkFile val="*nolinkage"></linkFile>
+<tables val="_repgen"></tables>
+<output val="C:\Users\Geoff\Reports\ncdb2000norm2010.CSV"></output>
+<report val="CSV"></report>
+<commas val="N"></commas>
+<year val="2010" ></year>
+<span val="allyear"></span>
+
+<!-- Report: sub-area geography and options. -->
+
+<geography val="TRACT" area="US.*"></geography>
+<selectedGeo val="TRACT"></selectedGeo>
+<errors val="N" ></errors>
+<areaName val="N" ></areaName>
+<incHeader val="N" ></incHeader>
+<areaGeoId val="N"></areaGeoId>
+
+<!-- Report: coverage. -->
+
+<state val="US" ></state>
+
+<!-- Report: fields. -->
+
+<field val="GEO2010	2010	Census Tract Identifier (ssccctttttt)" ></field>
+<field val="STATE	2010	State" ></field>
+<field val="STUSAB	2010	State/US Abbreviation (USPS)" ></field>
+<field val="REGION	2010	Region" ></field>
+<field val="DIVISION	2010	Division" ></field>
+<field val="INTPTLAT	2010	Internal Point (Latitude)" ></field>
+<field val="INTPTLON	2010	Internal Point (Longitude)" ></field>
+<field val="TCH_70_10	2010	Tract change code 1970-2010" ></field>
+<field val="TCH_80_10	2010	Tract change code 1980-2010" ></field>
+<field val="TCH_90_10	2010	Tract change code 1990-2010" ></field>
+<field val="TCH_00_10	2010	Tract change code 2000-2010" ></field>
+<field val="COUNTY	2010	County" ></field>
+<field val="ZCTA5	2010	ZIP Code Tabulation Area (5-Digit)" ></field>
+<field val="SDELM	2010	School District (Elementary)" ></field>
+<field val="SDSEC	2010	School District (Secondary)" ></field>
+<field val="SDUNI	2010	School District (Unified)" ></field>
+<field val="TRCTPOP0	2000	Total population" ></field>
+<field val="SHR0D	2000	Total population for race/ethnicity" ></field>
+<field val="SHRWHT0N	2000	Total White population" ></field>
+<field val="SHRWHT0	2000	Prop. White population" ></field>
+<field val="SHRBLK0N	2000	Total Black/Afr. Am. population" ></field>
+<field val="SHRBLK0	2000	Prop. Black/Afr. Am. population" ></field>
+<field val="NONHISP0	2000	Persons not of Hisp./Latino origin" ></field>
+<field val="SHRHSP0N	2000	Total Hisp./Latino population" ></field>
+<field val="SHRHSP0	2000	Prop. Hisp./Latino population" ></field>
+<field val="ADULT0N	2000	Adults 18+ years old" ></field>
+<field val="ADULT0	2000	Prop. of persons who are adults 18+ years old" ></field>
+<field val="CHILD0N	2000	Children under 18 years old" ></field>
+<field val="CHILD0	2000	Prop. of persons who are children under 18 years old" ></field>
+<field val="OLD0N	2000	Persons 65+ years old" ></field>
+<field val="OLD0	2000	Prop. of persons who are 65+ years old" ></field>
+<field val="KIDS0N	2000	Children under 5 years old" ></field>
+<field val="KIDS0	2000	Prop. of persons who are children under 5 years old" ></field>
+<field val="NATBORN0	2000	Native born population" ></field>
+<field val="FORBORN0	2000	Foreign born population" ></field>
+<field val="NUMHHS0	2000	Total HHs" ></field>
+<field val="PERS15P0	2000	Total persons 15+ years old" ></field>
+<field val="FFH0N	2000	Female-headed families and subfamilies with own children" ></field>
+<field val="FFH0D	2000	Total families and subfamilies with own children" ></field>
+<field val="FFH0	2000	Prop. of families and subfamilies with own children who are female-headed" ></field>
+<field val="SMHSE0N	2000	Persons 5+ years old residing in the same house five years ago" ></field>
+<field val="SMHSE0D	2000	Persons 5+ years old" ></field>
+<field val="SMHSE0	2000	Prop. of persons 5+ years old residing in the same house five years ago" ></field>
+<field val="EDUC80	2000	Persons 25+ years old who have competed 0-8 years of school" ></field>
+<field val="EDUC110	2000	Persons 25+ years old who have completed 9-12 years of school but no diploma" ></field>
+<field val="EDUC120	2000	Persons 25+ years old who have completed h.s. but no college" ></field>
+<field val="EDUC150	2000	Persons 25+ years old who have completed some college but no degree" ></field>
+<field val="EDUCA0	2000	Persons 25+ years old who have an associate degree but no bachelors degree" ></field>
+<field val="EDUC160	2000	Persons 25+ years old who have a bachelors or graduate/professional degree" ></field>
+<field val="EDUCPP0	2000	Persons 25+ years old" ></field>
+<field val="HSDROP0N	2000	Persons 16-19 years old neither enrolled in nor graduated from h.s." ></field>
+<field val="HSDROP0D	2000	Persons 16-19 years old" ></field>
+<field val="HSDROP0	2000	Prop. of persons 16-19 years old neither enrolled in nor graduated from h.s." ></field>
+<field val="INDEMP0	2000	Civilian employed persons 16+ years old" ></field>
+<field val="OCC10	2000	Persons 16+ years old employed in professional and technical occupations" ></field>
+<field val="OCC20	2000	Persons 16+ years old employed as executives, managers, and administrators (excl. farms)" ></field>
+<field val="OCC30	2000	Persons 16+ years old employed as sales workers" ></field>
+<field val="OCC40	2000	Persons 16+ years old employed as administrative support and clerical workers" ></field>
+<field val="OCC50	2000	Persons 16+ years old employed as precision production, craft, and repair workers" ></field>
+<field val="OCC60	2000	Persons 16+ years old employed as operators, assemblers, transportation, and material moving workers" ></field>
+<field val="OCC70	2000	Persons 16+ years old employed as nonfarm laborers" ></field>
+<field val="OCC80	2000	Persons 16+ years old employed as service workers" ></field>
+<field val="OCC90	2000	Persons 16+ years old employed as farm workers or in forestry and fishing" ></field>
+<field val="MNOPRT0D	2000	Males 16+ years old" ></field>
+<field val="FNOPRT0D	2000	Females 16+ years old" ></field>
+<field val="UNEMPT0N	2000	Persons 16+ years old in the civilian labor force and unemployed" ></field>
+<field val="UNEMPT0D	2000	Persons 16+ years old in the civilian labor force" ></field>
+<field val="UNEMPRT0	2000	Prop. of persons 16+ years old who are in the civilian labor force and unemployed" ></field>
+<field val="POVRAT0N	2000	Total persons below the poverty level last year" ></field>
+<field val="POVRAT0D	2000	Total population with poverty status determined" ></field>
+<field val="POVRAT0	2000	Prop. of total persons below the poverty level last year" ></field>
+<field val="WELFAR0N	2000	Households with public assistance inc. (incl. SSI) last year" ></field>
+<field val="WELFAR0D	2000	Total HHs" ></field>
+<field val="WELFARE0	2000	Prop. of HHs with public assistance inc. last year" ></field>
+<field val="FAVINC0N	2000	Aggregate family inc. ($)" ></field>
+<field val="FAVINC0D	2000	Total families" ></field>
+<field val="FAVINC0	2000	Average inc. per family ($)" ></field>
+<field val="MDFAMY0	2000	Median family inc. last year ($)" ></field>
+<field val="AVHHIN0N	2000	Aggregate HH inc. last year ($)" ></field>
+<field val="AVHHIN0	2000	Average HH inc. last year ($)" ></field>
+<field val="MDHHY0	2000	Median HH inc. last year ($)" ></field>
+<field val="TOTHSUN0	2000	Total housing units" ></field>
+<field val="OCCHU0	2000	Total occupied housing units" ></field>
+<field val="VACHU0	2000	Total vacant housing units" ></field>
+<field val="BLTOC000	2000	Occupied housing units built 1999-March 2000" ></field>
+<field val="BLTOC980	2000	Occupied housing units built 1995-1998" ></field>
+<field val="BLTOC940	2000	Occupied housing units built 1990-1994" ></field>
+<field val="BLTOC890	2000	Occupied housing units built 1980-1989" ></field>
+<field val="BLTOC790	2000	Occupied housing units built 1970-1979" ></field>
+<field val="BLTOC690	2000	Occupied housing units built 1960-1969" ></field>
+<field val="BLTOC590	2000	Occupied housing units built 1950-1959" ></field>
+<field val="BLTOC490	2000	Occupied housing units built 1940-1949" ></field>
+<field val="BLTOC390	2000	Occupied housing units built 1939 or earlier" ></field>
+
+</configuration>
