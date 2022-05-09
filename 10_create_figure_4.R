@@ -373,7 +373,7 @@ output.w1 %>%
 		    	ggtitle("Estimated Marginal Effects of Neighborhood Poverty") +
 			scale_y_continuous(
 				name="Standard Deviations",
-				limits=c(-0.52, 0.52),
+				limits=c(-0.50, 0.50),
 				breaks=round(seq(-0.50,0.50,0.10), 2)) +
 			scale_x_discrete(name=" ") +
 		    	theme(plot.title=element_text(face="bold"),

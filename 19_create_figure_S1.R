@@ -358,7 +358,7 @@ plot1<-ggplot(output.rd.w1[1:39,], aes(reorder(label, importance), importance)) 
 		coord_flip() +
 		xlab(" ") +
 		ylab("mean(|SHAP value|)") +
-		ylim(0.0, 0.20)+
+		ylim(0.0, 0.25)+
 		ggtitle("A. Reading Scores")
 
 plot2<-ggplot(output.mt.w1[1:39,], aes(reorder(label, importance), importance)) +
@@ -366,7 +366,7 @@ plot2<-ggplot(output.mt.w1[1:39,], aes(reorder(label, importance), importance)) 
 		coord_flip() +
 		xlab(" ") +
 		ylab("mean(|SHAP value|)") +
-		ylim(0.0, 0.20)+
+		ylim(0.0, 0.25)+
 		ggtitle("B. Math Scores")
 
 tiff("C:\\Users\\wodtke\\Desktop\\projects\\nhood_mediation_toxins\\figures\\figure_S1.1.tiff",
@@ -384,7 +384,7 @@ plot3<-ggplot(output.rd.w1[40:79,], aes(reorder(label, importance), importance))
   coord_flip() +
   xlab(" ") +
   ylab("mean(|SHAP value|)") +
-  ylim(0.0, 0.20)+
+  ylim(0.0, 0.25)+
   ggtitle("A. Reading Scores")
 
 plot4<-ggplot(output.mt.w1[40:79,], aes(reorder(label, importance), importance)) +
@@ -392,7 +392,7 @@ plot4<-ggplot(output.mt.w1[40:79,], aes(reorder(label, importance), importance))
   coord_flip() +
   xlab(" ") +
   ylab("mean(|SHAP value|)") +
-  ylim(0.0, 0.20)+
+  ylim(0.0, 0.25)+
   ggtitle("B. Math Scores")
 
 tiff("C:\\Users\\wodtke\\Desktop\\projects\\nhood_mediation_toxins\\figures\\figure_S1.2.tiff",

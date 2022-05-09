@@ -288,7 +288,7 @@ p1.base<-ggplot(output, aes(importance.nh,importance.rd,label=label))+
 	ylab(bquote(toxin%->%ability ~ "mean(|SHAP value|)")) +
 	ggtitle("A. Reading Scores") +
 	scale_y_continuous(breaks=seq(0,0.018,0.003),limits=c(0,0.018)) +
-	scale_x_continuous(breaks=seq(0,0.15,0.03),limits=c(0,0.15)) +
+	scale_x_continuous(breaks=seq(0,0.18,0.03),limits=c(0,0.18)) +
 	geom_point(color="black",size=0.6)+
 	theme_grey(base_size=8.5)
 
@@ -299,7 +299,7 @@ p2.base<-ggplot(output, aes(importance.nh,importance.mt,label=label))+
 	ylab(bquote(toxin%->%ability ~ "mean(|SHAP value|)")) +
 	ggtitle("B. Math Scores") +
 	scale_y_continuous(breaks=seq(0,0.018,0.003),limits=c(0,0.018)) +
-	scale_x_continuous(breaks=seq(0,0.15,0.03),limits=c(0,0.15)) +
+	scale_x_continuous(breaks=seq(0,0.18,0.03),limits=c(0,0.18)) +
 	geom_point(color="black",size=0.6)+
 	theme_grey(base_size=8.5)
 

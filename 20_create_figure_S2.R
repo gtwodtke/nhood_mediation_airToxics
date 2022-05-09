@@ -248,7 +248,7 @@ plot1<-ggplot(output.rd.w1, aes(reorder(label, importance), importance)) +
 		coord_flip() +
 		xlab(" ") +
 		ylab("mean(|SHAP value|)") +
-		ylim(0.0, 0.20)+
+		ylim(0.0, 0.25)+
 		ggtitle("A. Reading Scores")
 
 plot2<-ggplot(output.mt.w1, aes(reorder(label, importance), importance)) +
@@ -256,7 +256,7 @@ plot2<-ggplot(output.mt.w1, aes(reorder(label, importance), importance)) +
 		coord_flip() +
 		xlab(" ") +
 		ylab("mean(|SHAP value|)") +
-		ylim(0.0, 0.20)+
+		ylim(0.0, 0.25)+
 		ggtitle("B. Math Scores")
 
 tiff("C:\\Users\\wodtke\\Desktop\\projects\\nhood_mediation_toxins\\figures\\figure_S2.tiff",

@@ -18,7 +18,7 @@ do "${prgmpath}06_create_v03_eclsb_merged.do" nostop
 
 shell "C:\Program Files\R\R-4.1.3\bin\x64\R.exe" CMD BATCH --vanilla --slave --no-timing --no-echo "${prgmpath}07_create_v04_eclsb_mi.R"
 shell DEL "${prgmpath}07_create_v04_eclsb_mi.Rout"
-/*
+
 /*ANALYSES*/
 do "${prgmpath}08_create_figure_2.do" nostop
 
@@ -64,13 +64,12 @@ shell DEL "${prgmpath}21_create_figure_S3.Rout"
 shell "C:\Program Files\R\R-4.1.3\bin\x64\R.exe" CMD BATCH --vanilla --slave --no-restore --no-timing --no-echo "${prgmpath}22_create_figure_S4.R"
 shell DEL "${prgmpath}22_create_figure_S4.Rout"
 
-
 shell "C:\Program Files\R\R-4.1.3\bin\x64\R.exe" CMD BATCH --vanilla --slave --no-restore --no-timing --no-echo "${prgmpath}23_create_table_S3.R"
 shell DEL "${prgmpath}23_create_table_S3.Rout"
 
 shell "C:\Program Files\R\R-4.1.3\bin\x64\R.exe" CMD BATCH --vanilla --slave --no-restore --no-timing --no-echo "${prgmpath}24_create_table_S4.R"
 shell DEL "${prgmpath}24_create_table_S4.Rout"
-*/
+
 shell "C:\Program Files\R\R-4.1.3\bin\x64\R.exe" CMD BATCH --vanilla --slave --no-restore --no-timing --no-echo "${prgmpath}25_create_table_S5.R"
 shell DEL "${prgmpath}25_create_table_S5.Rout"
 
