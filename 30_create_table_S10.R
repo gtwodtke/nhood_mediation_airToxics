@@ -1,13 +1,13 @@
 ################################################
 ################################################
 ##                                            ##
-## PROGRAM NAME: 26_create_table_S6           ##
+## PROGRAM NAME: 30_create_table_S10          ##
 ## AUTHOR: GW                                 ##
 ## DESCRIPTION:                               ##
 ##                                            ##
-##  create table of nh effect estimates by    ##
-##  income using random forests and reg       ##
-##  imputation                                ## 
+##  create table of nh effect estimates       ##
+##  using random forests and reg imputation   ## 
+##  w/o sampling weights                      ##
 ##                                            ##
 ################################################
 ################################################
@@ -52,9 +52,8 @@ ntrees<-200
 n.cores<-parallel::detectCores()-1
 astar<-0.25
 a<-0.05
-inc.cut<-quantile(eclsb.mi$faminc01,probs=0.5)*(2/3)
 
-##### DEFINE COVARIATE SETS #####
+##### DEFINE VARIABLE SETS #####
 vars.base<-c(
 	"gender",
 	"race",
@@ -140,20 +139,17 @@ vars.ntxw1<-c(
 	"chem592_2001",
 	"chem599_2001") 
 
-##### STANDARDIZE ######
+##### STANDARDIZE VARS ######
 for (v in 1:length(vars.ntxw1)) {
-	eclsb.mi[,vars.ntxw1[v]]<-(eclsb.mi[,vars.ntxw1[v]]-weighted.mean(eclsb.mi[,vars.ntxw1[v]],eclsb.mi$sampwt))/sqrt(wtd.var(eclsb.mi[,vars.ntxw1[v]],eclsb.mi$sampwt))
+	eclsb.mi[,vars.ntxw1[v]]<-(eclsb.mi[,vars.ntxw1[v]]-mean(eclsb.mi[,vars.ntxw1[v]]))/sd(eclsb.mi[,vars.ntxw1[v]])
 	}
 
-eclsb.mi$readtheta05<-(eclsb.mi$readtheta05-weighted.mean(eclsb.mi$readtheta05,eclsb.mi$sampwt))/sqrt(wtd.var(eclsb.mi$readtheta05,eclsb.mi$sampwt))
-eclsb.mi$maththeta05<-(eclsb.mi$maththeta05-weighted.mean(eclsb.mi$maththeta05,eclsb.mi$sampwt))/sqrt(wtd.var(eclsb.mi$maththeta05,eclsb.mi$sampwt))
+eclsb.mi$readtheta05<-(eclsb.mi$readtheta05-mean(eclsb.mi$readtheta05))/sd(eclsb.mi$readtheta05)
+eclsb.mi$maththeta05<-(eclsb.mi$maththeta05-mean(eclsb.mi$maththeta05))/sd(eclsb.mi$maththeta05)
 
 ##### ESTIMATE NHOOD EFFECTS #####
-miest.rd.abv<-miest.mt.abv<-matrix(data=NA,nrow=nmi,ncol=3)
-miest.rd.blw<-miest.mt.blw<-matrix(data=NA,nrow=nmi,ncol=3)
-
-boot.ci.rd.abv<-boot.ci.mt.abv<-NULL
-boot.ci.rd.blw<-boot.ci.mt.blw<-NULL
+miest.rd.w1<-miest.mt.w1<-matrix(data=NA,nrow=nmi,ncol=3)
+boot.ci.rd<-boot.ci.mt<-NULL
 
 for (i in 1:nmi) {
 
@@ -189,7 +185,6 @@ for (i in 1:nmi) {
 		metric="RMSE",
 		respect.unordered.factors=TRUE,
 		num.trees=ntrees,
-		weights=eclsb$sampwt,
 		seed=8675309)
 
 	rf.mt.m1<-train(maththeta05~.,
@@ -200,7 +195,6 @@ for (i in 1:nmi) {
 		metric="RMSE",
 		respect.unordered.factors=TRUE,
 		num.trees=ntrees,
-		weights=eclsb$sampwt,
 		seed=8675309)
 
 	rf.rd.m2<-train(readtheta05~.,
@@ -211,7 +205,6 @@ for (i in 1:nmi) {
 		metric="RMSE",
 		respect.unordered.factors=TRUE,
 		num.trees=ntrees,
-		weights=eclsb$sampwt,
 		seed=8675309)
 
 	rf.mt.m2<-train(maththeta05~.,
@@ -222,7 +215,6 @@ for (i in 1:nmi) {
 		metric="RMSE",
 		respect.unordered.factors=TRUE,
 		num.trees=ntrees,
-		weights=eclsb$sampwt,
 		seed=8675309)
 
 	rd.m2.tune<-ranger(readtheta05~.,
@@ -232,7 +224,6 @@ for (i in 1:nmi) {
 		mtry=rf.rd.m2$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=eclsb$sampwt,
 		seed=8675309)
 
 	mt.m2.tune<-ranger(maththeta05~.,
@@ -242,7 +233,6 @@ for (i in 1:nmi) {
 		mtry=rf.mt.m2$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=eclsb$sampwt,
 		seed=8675309)
 
 	eclsb.tune.imp<-eclsb[,c(vars.base,vars.covw1,vars.ntxw1)]
@@ -259,7 +249,6 @@ for (i in 1:nmi) {
 		metric="RMSE",
 		respect.unordered.factors=TRUE,
 		num.trees=ntrees,
-		weights=eclsb$sampwt,
 		seed=8675309)
 
 	rf.mt.m3<-train(
@@ -271,7 +260,6 @@ for (i in 1:nmi) {
 		metric="RMSE",
 		respect.unordered.factors=TRUE,
 		num.trees=ntrees,
-		weights=eclsb$sampwt,
 		seed=8675309)
 
 	### COMPUTE ESTIMATES ###
@@ -279,8 +267,8 @@ for (i in 1:nmi) {
 	math.train<-eclsb[,"maththeta05"]
 	c.a.train<-eclsb[,c(vars.base,vars.covw1)]
 	c.a.m.train<-eclsb[,c(vars.base,vars.covw1,vars.ntxw1)]
-	wts.train<-eclsb[,"sampwt"]
 
+	### COMPUTE ESTIMATES ###
 	# STEP 1: ESTIMATE E(Y(astar)) and E(Y(a)) #
 	read.giv.c.a<-ranger(
 		y=read.train,
@@ -290,7 +278,6 @@ for (i in 1:nmi) {
 		mtry=rf.rd.m1$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=wts.train,
 		seed=8675309)
 
 	math.giv.c.a<-ranger(
@@ -301,16 +288,15 @@ for (i in 1:nmi) {
 		mtry=rf.mt.m1$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=wts.train,
 		seed=8675309)
 
 	c.a.imp<-eclsb[,c(vars.base,vars.covw1)]
 	c.a.imp$nhpovrt01<-astar	
-	eclsb$read.astar<-predict(read.giv.c.a,c.a.imp)$pred
-	eclsb$math.astar<-predict(math.giv.c.a,c.a.imp)$pred
+	read.astar<-predict(read.giv.c.a,c.a.imp)$pred
+	math.astar<-predict(math.giv.c.a,c.a.imp)$pred
 	c.a.imp$nhpovrt01<-a	
-	eclsb$read.a<-predict(read.giv.c.a,c.a.imp)$pred
-	eclsb$math.a<-predict(math.giv.c.a,c.a.imp)$pred
+	read.a<-predict(read.giv.c.a,c.a.imp)$pred
+	math.a<-predict(math.giv.c.a,c.a.imp)$pred
 
 	# STEP 2: ESTIMATE E(Y(astar,m(a)) #
 	read.giv.c.a.m<-ranger(
@@ -321,7 +307,6 @@ for (i in 1:nmi) {
 		mtry=rf.rd.m2$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=wts.train,
 		seed=8675309)
 
 	math.giv.c.a.m<-ranger(
@@ -332,7 +317,6 @@ for (i in 1:nmi) {
 		mtry=rf.mt.m2$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=wts.train,
 		seed=8675309)
 
 	c.a.m.imp<-eclsb[,c(vars.base,vars.covw1,vars.ntxw1)]
@@ -348,7 +332,6 @@ for (i in 1:nmi) {
 		mtry=rf.rd.m3$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=wts.train,
 		seed=8675309)
 
 	math.uhat.astar.m<-ranger(
@@ -359,30 +342,21 @@ for (i in 1:nmi) {
 		mtry=rf.mt.m3$bestTune[,"mtry"],
 		splitrule="variance",
 		respect.unordered.factors=TRUE,
-		case.weights=wts.train,
 		seed=8675309)
 
 	c.a.imp<-eclsb[,c(vars.base,vars.covw1)]
 	c.a.imp$nhpovrt01<-a	
-	eclsb$read.astar.mofa<-predict(read.uhat.astar.m,c.a.imp)$pred
-	eclsb$math.astar.mofa<-predict(math.uhat.astar.m,c.a.imp)$pred
+	read.astar.mofa<-predict(read.uhat.astar.m,c.a.imp)$pred
+	math.astar.mofa<-predict(math.uhat.astar.m,c.a.imp)$pred
 
 	# STEP 3: COMPUTE ATE, NDE, NIE #
-	miest.rd.abv[i,1]<-weighted.mean(eclsb$read.astar[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])-weighted.mean(eclsb$read.a[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])
-	miest.rd.abv[i,2]<-weighted.mean(eclsb$read.astar.mofa[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])-weighted.mean(eclsb$read.a[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])
-	miest.rd.abv[i,3]<-weighted.mean(eclsb$read.astar[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])-weighted.mean(eclsb$read.astar.mofa[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])
+	miest.rd.w1[i,1]<-mean(read.astar)-mean(read.a)
+	miest.rd.w1[i,2]<-mean(read.astar.mofa)-mean(read.a)
+	miest.rd.w1[i,3]<-mean(read.astar)-mean(read.astar.mofa)
 
-	miest.mt.abv[i,1]<-weighted.mean(eclsb$math.astar[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])-weighted.mean(eclsb$math.a[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])
-	miest.mt.abv[i,2]<-weighted.mean(eclsb$math.astar.mofa[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])-weighted.mean(eclsb$math.a[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])
-	miest.mt.abv[i,3]<-weighted.mean(eclsb$math.astar[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])-weighted.mean(eclsb$math.astar.mofa[eclsb$faminc01>inc.cut],eclsb$sampwt[eclsb$faminc01>inc.cut])
-
-	miest.rd.blw[i,1]<-weighted.mean(eclsb$read.astar[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])-weighted.mean(eclsb$read.a[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])
-	miest.rd.blw[i,2]<-weighted.mean(eclsb$read.astar.mofa[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])-weighted.mean(eclsb$read.a[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])
-	miest.rd.blw[i,3]<-weighted.mean(eclsb$read.astar[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])-weighted.mean(eclsb$read.astar.mofa[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])
-
-	miest.mt.blw[i,1]<-weighted.mean(eclsb$math.astar[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])-weighted.mean(eclsb$math.a[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])
-	miest.mt.blw[i,2]<-weighted.mean(eclsb$math.astar.mofa[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])-weighted.mean(eclsb$math.a[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])
-	miest.mt.blw[i,3]<-weighted.mean(eclsb$math.astar[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])-weighted.mean(eclsb$math.astar.mofa[eclsb$faminc01<=inc.cut],eclsb$sampwt[eclsb$faminc01<=inc.cut])
+	miest.mt.w1[i,1]<-mean(math.astar)-mean(math.a)
+	miest.mt.w1[i,2]<-mean(math.astar.mofa)-mean(math.a)
+	miest.mt.w1[i,3]<-mean(math.astar)-mean(math.astar.mofa)
 
 	### COMPUTE BOOTSTRAP CIs ###
 	my.cluster<-parallel::makeCluster(n.cores,type="PSOCK")
@@ -432,7 +406,6 @@ for (i in 1:nmi) {
 		boot.math.train<-boot.eclsb[,"maththeta05"]
 		boot.c.a.train<-boot.eclsb[,c(vars.base,vars.covw1)]
 		boot.c.a.m.train<-boot.eclsb[,c(vars.base,vars.covw1,vars.ntxw1)]
-		boot.wts.train<-boot.eclsb[,"sampwt"]
 
 		boot.read.giv.c.a<-ranger(
 			y=boot.read.train,
@@ -442,7 +415,6 @@ for (i in 1:nmi) {
 			mtry=rf.rd.m1$bestTune[,"mtry"],
 			splitrule="variance",
 			respect.unordered.factors=TRUE,
-			case.weights=boot.wts.train,
 			seed=8675309)
 
 		boot.math.giv.c.a<-ranger(
@@ -453,16 +425,15 @@ for (i in 1:nmi) {
 			mtry=rf.mt.m1$bestTune[,"mtry"],
 			splitrule="variance",
 			respect.unordered.factors=TRUE,
-			case.weights=boot.wts.train,
 			seed=8675309)
 
 		boot.c.a.imp<-boot.eclsb[,c(vars.base,vars.covw1)]
 		boot.c.a.imp$nhpovrt01<-astar	
-		boot.eclsb$read.astar<-predict(boot.read.giv.c.a,boot.c.a.imp)$pred
-		boot.eclsb$math.astar<-predict(boot.math.giv.c.a,boot.c.a.imp)$pred
+		boot.read.astar<-predict(boot.read.giv.c.a,boot.c.a.imp)$pred
+		boot.math.astar<-predict(boot.math.giv.c.a,boot.c.a.imp)$pred
 		boot.c.a.imp$nhpovrt01<-a	
-		boot.eclsb$read.a<-predict(boot.read.giv.c.a,boot.c.a.imp)$pred
-		boot.eclsb$math.a<-predict(boot.math.giv.c.a,boot.c.a.imp)$pred
+		boot.read.a<-predict(boot.read.giv.c.a,boot.c.a.imp)$pred
+		boot.math.a<-predict(boot.math.giv.c.a,boot.c.a.imp)$pred
 
 		boot.read.giv.c.a.m<-ranger(
 			y=boot.read.train,
@@ -472,7 +443,6 @@ for (i in 1:nmi) {
 			mtry=rf.rd.m2$bestTune[,"mtry"],
 			splitrule="variance",
 			respect.unordered.factors=TRUE,
-			case.weights=boot.wts.train,
 			seed=8675309)
 
 		boot.math.giv.c.a.m<-ranger(
@@ -483,7 +453,6 @@ for (i in 1:nmi) {
 			mtry=rf.mt.m2$bestTune[,"mtry"],
 			splitrule="variance",
 			respect.unordered.factors=TRUE,
-			case.weights=boot.wts.train,
 			seed=8675309)
 
 		boot.c.a.m.imp<-boot.eclsb[,c(vars.base,vars.covw1,vars.ntxw1)]
@@ -499,7 +468,6 @@ for (i in 1:nmi) {
 			mtry=rf.rd.m3$bestTune[,"mtry"],
 			splitrule="variance",
 			respect.unordered.factors=TRUE,
-			case.weights=boot.wts.train,
 			seed=8675309)
 
 		boot.math.uhat.astar.m<-ranger(
@@ -510,113 +478,70 @@ for (i in 1:nmi) {
 			mtry=rf.mt.m3$bestTune[,"mtry"],
 			splitrule="variance",
 			respect.unordered.factors=TRUE,
-			case.weights=boot.wts.train,
 			seed=8675309)
 
 		boot.c.a.imp<-boot.eclsb[,c(vars.base,vars.covw1)]
 		boot.c.a.imp$nhpovrt01<-a	
-		boot.eclsb$read.astar.mofa<-predict(boot.read.uhat.astar.m,boot.c.a.imp)$pred
-		boot.eclsb$math.astar.mofa<-predict(boot.math.uhat.astar.m,boot.c.a.imp)$pred
+		boot.read.astar.mofa<-predict(boot.read.uhat.astar.m,boot.c.a.imp)$pred
+		boot.math.astar.mofa<-predict(boot.math.uhat.astar.m,boot.c.a.imp)$pred
 
-		boot.ate.rd.abv<-weighted.mean(boot.eclsb$read.astar[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])-weighted.mean(boot.eclsb$read.a[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])
-		boot.nde.rd.abv<-weighted.mean(boot.eclsb$read.astar.mofa[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])-weighted.mean(boot.eclsb$read.a[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])
-		boot.nie.rd.abv<-weighted.mean(boot.eclsb$read.astar[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])-weighted.mean(boot.eclsb$read.astar.mofa[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])
+		boot.ate.rd.w1<-mean(boot.read.astar)-mean(boot.read.a)
+		boot.nde.rd.w1<-mean(boot.read.astar.mofa)-mean(boot.read.a)
+		boot.nie.rd.w1<-mean(boot.read.astar)-mean(boot.read.astar.mofa)
 
-		boot.ate.mt.abv<-weighted.mean(boot.eclsb$math.astar[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])-weighted.mean(boot.eclsb$math.a[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])
-		boot.nde.mt.abv<-weighted.mean(boot.eclsb$math.astar.mofa[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])-weighted.mean(boot.eclsb$math.a[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])
-		boot.nie.mt.abv<-weighted.mean(boot.eclsb$math.astar[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])-weighted.mean(boot.eclsb$math.astar.mofa[boot.eclsb$faminc01>inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01>inc.cut])
-
-		boot.ate.rd.blw<-weighted.mean(boot.eclsb$read.astar[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])-weighted.mean(boot.eclsb$read.a[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])
-		boot.nde.rd.blw<-weighted.mean(boot.eclsb$read.astar.mofa[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])-weighted.mean(boot.eclsb$read.a[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])
-		boot.nie.rd.blw<-weighted.mean(boot.eclsb$read.astar[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])-weighted.mean(boot.eclsb$read.astar.mofa[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])
-
-		boot.ate.mt.blw<-weighted.mean(boot.eclsb$math.astar[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])-weighted.mean(boot.eclsb$math.a[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])
-		boot.nde.mt.blw<-weighted.mean(boot.eclsb$math.astar.mofa[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])-weighted.mean(boot.eclsb$math.a[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])
-		boot.nie.mt.blw<-weighted.mean(boot.eclsb$math.astar[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])-weighted.mean(boot.eclsb$math.astar.mofa[boot.eclsb$faminc01<=inc.cut],boot.eclsb$sampwt[boot.eclsb$faminc01<=inc.cut])
-
+		boot.ate.mt.w1<-mean(boot.math.astar)-mean(boot.math.a)
+		boot.nde.mt.w1<-mean(boot.math.astar.mofa)-mean(boot.math.a)
+		boot.nie.mt.w1<-mean(boot.math.astar)-mean(boot.math.astar.mofa)
+			
 		return(list(
-			boot.ate.rd.abv,boot.nde.rd.abv,boot.nie.rd.abv,
-			boot.ate.mt.abv,boot.nde.mt.abv,boot.nie.mt.abv,
-			boot.ate.rd.blw,boot.nde.rd.blw,boot.nie.rd.blw,
-			boot.ate.mt.blw,boot.nde.mt.blw,boot.nie.mt.blw))
+			boot.ate.rd.w1,
+			boot.nde.rd.w1,
+			boot.nie.rd.w1,
+			boot.ate.mt.w1,
+			boot.nde.mt.w1,
+			boot.nie.mt.w1))
 		}
 
-	boot.est.w1<-matrix(unlist(boot.est.w1),ncol=24,byrow=TRUE)
+	boot.est.w1<-matrix(unlist(boot.est.w1),ncol=6,byrow=TRUE)
 
-	boot.ci.rd.abv<-rbind(boot.ci.rd.abv,boot.est.w1[,1:3])
-	boot.ci.mt.abv<-rbind(boot.ci.mt.abv,boot.est.w1[,4:6])
-
-	boot.ci.rd.blw<-rbind(boot.ci.rd.blw,boot.est.w1[,7:9])
-	boot.ci.mt.blw<-rbind(boot.ci.mt.blw,boot.est.w1[,10:12])
+	boot.ci.rd<-rbind(boot.ci.rd,boot.est.w1[,1:3])
+	boot.ci.mt<-rbind(boot.ci.mt,boot.est.w1[,4:6])
 
 	stopCluster(my.cluster)
 	rm(my.cluster)
 	}
 
-## COMBINE MI ESTIMATES ###
-est.rd.abv<-est.mt.abv<-matrix(data=NA,nrow=3,ncol=3)
-est.rd.blw<-est.mt.blw<-matrix(data=NA,nrow=3,ncol=3)
+### COMBINE MI ESTIMATES ###
+est.rd.w1<-est.mt.w1<-matrix(data=NA,nrow=3,ncol=3)
 
 for (i in 1:3) { 
 	
-	est.rd.abv[i,1]<-round(mean(miest.rd.abv[,i]),digits=3)
-	est.rd.abv[i,2]<-round(quantile(boot.ci.rd.abv[,i],prob=0.025),digits=3)
-	est.rd.abv[i,3]<-round(quantile(boot.ci.rd.abv[,i],prob=0.975),digits=3)
+	est.rd.w1[i,1]<-round(mean(miest.rd.w1[,i]),digits=3)
+	est.rd.w1[i,2]<-round(quantile(boot.ci.rd[,i],prob=0.025),digits=3)
+	est.rd.w1[i,3]<-round(quantile(boot.ci.rd[,i],prob=0.975),digits=3)
 
-	est.mt.abv[i,1]<-round(mean(miest.mt.abv[,i]),digits=3)
-	est.mt.abv[i,2]<-round(quantile(boot.ci.mt.abv[,i],prob=0.025),digits=3)
-	est.mt.abv[i,3]<-round(quantile(boot.ci.mt.abv[,i],prob=0.975),digits=3)
-
-	est.rd.blw[i,1]<-round(mean(miest.rd.blw[,i]),digits=3)
-	est.rd.blw[i,2]<-round(quantile(boot.ci.rd.blw[,i],prob=0.025),digits=3)
-	est.rd.blw[i,3]<-round(quantile(boot.ci.rd.blw[,i],prob=0.975),digits=3)
-
-	est.mt.blw[i,1]<-round(mean(miest.mt.blw[,i]),digits=3)
-	est.mt.blw[i,2]<-round(quantile(boot.ci.mt.blw[,i],prob=0.025),digits=3)
-	est.mt.blw[i,3]<-round(quantile(boot.ci.mt.blw[,i],prob=0.975),digits=3)
+	est.mt.w1[i,1]<-round(mean(miest.mt.w1[,i]),digits=3)
+	est.mt.w1[i,2]<-round(quantile(boot.ci.mt[,i],prob=0.025),digits=3)
+	est.mt.w1[i,3]<-round(quantile(boot.ci.mt[,i],prob=0.975),digits=3)
 	}
 
 rlabel<-c('ATE','NDE','NIE')
-output.rd.abv<-data.frame(est.rd.abv,row.names=rlabel)
-output.mt.abv<-data.frame(est.mt.abv,row.names=rlabel)
-output.rd.blw<-data.frame(est.rd.blw,row.names=rlabel)
-output.mt.blw<-data.frame(est.mt.blw,row.names=rlabel)
-
-colnames(output.rd.abv)<-colnames(output.mt.abv)<-c('estimate','ll.pct.95ci','ul.pct.95ci')
-colnames(output.rd.blw)<-colnames(output.mt.blw)<-c('estimate','ll.pct.95ci','ul.pct.95ci')
+output.rd.w1<-data.frame(est.rd.w1,row.names=rlabel)
+output.mt.w1<-data.frame(est.mt.w1,row.names=rlabel)
+colnames(output.rd.w1)<-colnames(output.mt.w1)<-c('estimate','ll.pct.95ci','ul.pct.95ci')
 
 ### PRINT RESULTS ###
-sink("C:\\Users\\wodtke\\Desktop\\projects\\nhood_mediation_toxins\\programs\\_LOGS\\26_create_table_S6_log.txt")
+sink("C:\\Users\\wodtke\\Desktop\\projects\\nhood_mediation_toxins\\programs\\_LOGS\\30_create_table_S10_log.txt")
 
 cat("===========================================\n")
-cat("> TWO-THIRDS OF MEDIAN INCOME\n")
-cat("===========================================\n")
-count(eclsb.mi[which(eclsb.mi$minum==1 & eclsb.mi$faminc01>inc.cut),])
 cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 cat("Reading Test Scores\n")
 cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-print(output.rd.abv)
+print(output.rd.w1)
 cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 cat("Math Test Scores\n")
 cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-print(output.mt.abv)
-cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-cat("===========================================\n")
-cat(" \n")
-cat(" \n")
-cat(" \n")
-cat("===========================================\n")
-cat("<= TWO-THIRDS OF MEDIAN INCOME\n")
-cat("===========================================\n")
-count(eclsb.mi[which(eclsb.mi$minum==1 & eclsb.mi$faminc01<=inc.cut),])
-cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-cat("Reading Test Scores\n")
-cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-print(output.rd.blw)
-cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-cat("Math Test Scores\n")
-cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-print(output.mt.blw)
+print(output.mt.w1)
 cat("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 cat("===========================================\n")
 

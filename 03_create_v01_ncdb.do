@@ -18,7 +18,16 @@ PURPOSE: input, clean, interpolate, and aggregate data from NCDB
 /******************
 INPUT RAW NCDB DATA
 *******************/
-import delimited "${data_directory}ncdb_raw.csv", encoding(ISO-8859-1) 
+import delimited "${data_directory}ncdb2010.csv", encoding(ISO-8859-1) 
+save "C:\Users\wodtke\Desktop\projects\nhood_mediation_toxins\data\_TEMP\ncdb2010_temp.dta", replace
+clear
+
+import delimited "${data_directory}ncdb2000.csv", encoding(ISO-8859-1) 
+
+merge 1:1 geo2010 using "C:\Users\wodtke\Desktop\projects\nhood_mediation_toxins\data\_TEMP\ncdb2010_temp.dta"
+drop _merge 
+
+erase "C:\Users\wodtke\Desktop\projects\nhood_mediation_toxins\data\_TEMP\ncdb2010_temp.dta"
 
 /**********
 RENAME VARS
@@ -56,7 +65,7 @@ rename shrwht1n	shrwhtn_2010
 rename shrblk0n shrblkn_2000 
 rename shrblk1n shrblkn_2010 
 
-keep geo2010 state region division county trctpop* educ* ffhd* ffhn* ///
+keep geo2010 state region division county trctpop* educ*_* ffhd* ffhn* ///
 povratd* povratn* unemptd* unemptn* shrwhtn* shrblkn* 
 
 sort geo2010

@@ -85,3 +85,5 @@ shell DEL "${prgmpath}28_create_table_S8.Rout"
 shell "C:\Program Files\R\R-4.1.3\bin\x64\R.exe" CMD BATCH --vanilla --slave --no-restore --no-timing --no-echo "${prgmpath}29_create_table_S9.R"
 shell DEL "${prgmpath}29_create_table_S9.Rout"
 
+shell "C:\Program Files\R\R-4.1.3\bin\x64\R.exe" CMD BATCH --vanilla --slave --no-restore --no-timing --no-echo "${prgmpath}30_create_table_S10.R"
+shell DEL "${prgmpath}30_create_table_S10.Rout"
